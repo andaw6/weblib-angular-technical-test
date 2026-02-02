@@ -1,0 +1,64 @@
+<div class="flex items-center justify-between px-4 py-3 border-t border-border">
+  <div class="flex items-center gap-2">
+    <span class="text-sm text-muted-foreground">Rows per page:</span>
+    <select [ngModel]="store.pagination().rowsPerPage" (ngModelChange)="store.setRowsPerPage($event)"
+      class="bg-muted border border-border rounded px-2 py-1 text-sm" aria-label="Rows per page">
+      @for (option of rowsPerPageOptions; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="flex items-center gap-4">
+    <span class="text-sm text-muted-foreground">{{
+      store.paginationInfo()
+      }}</span>
+
+    <div class="flex items-center gap-1">
+      <button (click)="store.firstPage()" [disabled]="store.pagination().currentPage === 1"
+        class="p-2 hover:bg-muted rounded-md disabled:opacity-50 disabled:cursor-not-allowed" aria-label="First page">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <button (click)="store.prevPage()" [disabled]="store.pagination().currentPage === 1"
+        class="p-2 hover:bg-muted rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
+        aria-label="Previous page">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <!-- Page Numbers -->
+      <div class="flex items-center gap-1">
+        @for (page of pageNumbers(); track page) {
+        @if (page === "...") {
+        <span class="px-2 text-muted-foreground">...</span>
+        } @else {
+        <button (click)="store.setPage(+page)" class="w-8 h-8 rounded-md text-sm"
+          [class.bg-accent]="page === store.pagination().currentPage" [class.text-background]="
+                  page === store.pagination().currentPage
+                " [class.hover:bg-muted]="page !== store.pagination().currentPage">
+          {{ page }}
+        </button>
+        }
+        }
+      </div>
+
+      <button (click)="store.nextPage()" [disabled]="store.pagination().currentPage === store.totalPages()"
+        class="p-2 hover:bg-muted rounded-md disabled:opacity-50 disabled:cursor-not-allowed" aria-label="Next page">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+      <button (click)="store.lastPage()" [disabled]="store.pagination().currentPage === store.totalPages()"
+        class="p-2 hover:bg-muted rounded-md disabled:opacity-50 disabled:cursor-not-allowed" aria-label="Last page">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+ :host {
+   display: block;
+ }
+
+ .dragging {
+   opacity: 0.5;
+ }
+
+ .drag-over {
+   border-left: 2px solid #22c55e;
+ }
+
+ .drag-handle {
+   cursor: grab;
+ }
+
+ .drag-handle:active {
+   cursor: grabbing;
+ }
