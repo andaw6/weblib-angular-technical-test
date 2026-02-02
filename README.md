@@ -114,8 +114,8 @@ src/app/
 
 ```bash
 # Clone the repository
-git clone <repository-url>
-cd angular-table-widget
+git clone https://github.com/andaw6/weblib-angular-technical-test.git
+cd weblib-angular-technical-test
 
 # Install dependencies
 npm install
@@ -335,5 +335,3 @@ ng test --code-coverage
 ## License
 
 MIT License - see LICENSE file for details.
-#   w e b l i b - a n g u l a r - t e c h n i c a l - t e s t  
- 
